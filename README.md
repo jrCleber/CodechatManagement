@@ -57,8 +57,11 @@ Configure::write('registro', [  | altere aqui caso queira que o registro fique a
 ```bash
 # Procure por  'Datasources' => [
         'default' => [
-$ e edite o HOST com o servidor MySQL, username password e db!, Mesma coisa com o debug_kit! Mais abaixo, caso queira ativar o envio de Email só editar conforme!
+e edite o HOST com o servidor MySQL, username password e db!, Mesma coisa com o debug_kit! Mais abaixo, 
+caso queira ativar o envio de Email só editar conforme!
 ```
+
+é possivel editar o arquivo Users.php caso queira ativar ativação do cadastro por email por exemplo...
 
 Importe o banco de dados no MySQL;
 Va para config/app_local.php
