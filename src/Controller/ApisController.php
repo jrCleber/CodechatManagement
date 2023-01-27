@@ -30,7 +30,7 @@ class ApisController extends AppController
                 $jsonData = $this->request->getParsedBody();
                 if($jsonData['message_type'] == 'outgoing'){
                     $enviadoDe = $jsonData['sender']['name'];
-                    $conteudo = '*'.$enviadoDe.'*: \n'.$jsonData['content'];
+                    $msg = $jsonData['content'];
                     $enviarPara = $jsonData['conversation']['meta']['sender']['phone_number'];
                     $arrayJson = $jsonData['conversation']['messages'][0];
                     if (array_key_exists('attachments', $arrayJson)){
@@ -38,12 +38,12 @@ class ApisController extends AppController
                             $server->api_geral,
                             $code->api_key,
                             $arrayJson['attachments'][0]['data_url'],
-                            $conteudo,
+                            $msg,
                             $arrayJson['attachments'][0]['file_type'],
                             $enviarPara
                         );
                     }else{
-                        $this->Webhook->message($server->url,$server->api_geral,$code->api_key,$conteudo,$enviarPara);
+                        $this->Webhook->message($server->url,$server->api_geral,$code->api_key,$msg,$enviarPara,$enviadoDe);
                     }
                 }
             }
