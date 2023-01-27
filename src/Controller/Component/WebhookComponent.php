@@ -10,12 +10,12 @@ use HTTP_Request2;
 
 class WebhookComponent extends Component
 {
-
-    public function message($servidor,$api,$instancia,$content,$numero){
+    public function message($servidor,$api,$instancia,$content,$numero,$operador){
         $numero = str_replace('+','',$numero);
 
         $curl = curl_init();
 
+        $msg = json_encode(array('number' => $numero, 'options' => array('delay' => 2200), 'textMessage' => array('text' => '*'.$operador."*:\n".$content) ),JSON_UNESCAPED_SLASHES);
         curl_setopt_array($curl, array(
             CURLOPT_URL => $servidor.'/message/sendText/'.$instancia,
             CURLOPT_RETURNTRANSFER => true,
@@ -25,15 +25,7 @@ class WebhookComponent extends Component
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS =>'{
-  "number": "'.$numero.'",
-  "options": {
-    "delay": 2200
-  },
-  "textMessage": {
-    "text": "'.$content.'"
-  }
-}',
+            CURLOPT_POSTFIELDS => $msg,
             CURLOPT_HTTPHEADER => array(
                 'apikey: '.$api,
                 'Content-Type: application/json'
