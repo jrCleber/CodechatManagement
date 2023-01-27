@@ -52,14 +52,18 @@ class CodeChatsTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
+            'className' => 'CakeDC\Users\Model\Table\UsersTable'
         ]);
+
         $this->belongsTo('Servers', [
             'foreignKey' => 'server_id',
             'joinType' => 'INNER',
         ]);
+
         $this->hasMany('Chatwoots', [
             'foreignKey' => 'code_chat_id',
         ]);
+
     }
 
     /**
