@@ -49,7 +49,7 @@ $config = [
         ],
         'Registration' => [
             // determines if the register is enabled
-            'active' => false,
+            'active' => true,
             // determines if the reCaptcha is enabled for registration
             'reCaptcha' => true,
             // allow a logged in user to access the registration form
