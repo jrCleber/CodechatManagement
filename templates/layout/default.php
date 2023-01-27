@@ -27,13 +27,16 @@ $tonhaoDescription = 'CodechatManagement - Gerenciamento do codechat';
             <a href="<?= $this->Url->build('/') ?>"><span>Codechat</span> Management</a>
         </div>
         <div class="top-nav-links">
-            <a  href="/servers">Novo Servidor</a>
-            |
-            <a  rel="noopener" href="/logout">Logout</a>
-            |
-            <a target="_blank" rel="noopener" href="https://github.com/aspiretony/CodechatManagement">Documentation</a>
-            |
-            <a target="_blank" rel="noopener" href="https://github.com/aspiretony/">GitHub - SirTonhão</a>
+            <?php
+
+            if (($this->request->getAttribute('identity'))){
+                 if ($this->request->getAttribute('identity')->is_superuser){
+                                echo '<a  href="/servers">Novo Servidor</a> |  <a target="_blank" rel="noopener" href="https://github.com/aspiretony/CodechatManagement">Documentation</a> | <a target="_blank" rel="noopener" href="https://github.com/aspiretony/">GitHub - SirTonhão</a> |';
+                            }
+                     echo ' <a  rel="noopener" href="/logout">Logout</a> | <a  rel="noopener" href="/profile">Meu Perfil</a>';
+                 }
+            ?>
+
         </div>
     </nav>
     <main class="main">
