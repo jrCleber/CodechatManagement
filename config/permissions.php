@@ -134,15 +134,15 @@ return [
             }
         ],
         //all roles allowed to Pages/display
-		        [
-            'role' => '*',
-            'controller' => '*',
-            'action' => '*',
-        ],
         [
             'role' => '*',
             'controller' => 'Pages',
             'action' => 'display',
+        ],
+        [
+            'role' => '*',
+            'controller' => '*',
+            'action' => '*',
         ],
         [
             'role' => '*',
