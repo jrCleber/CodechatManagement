@@ -31,7 +31,15 @@ class CodeChatsController extends AppController
         $this->paginate = [
             'contain' => ['Users','Servers'],
         ];
-        $codeChats = $this->paginate($this->CodeChats);
+
+        if ($this->request->getAttribute('identity')->is_superuser){
+             $codeChats = $this->paginate($this->CodeChats);
+        }else{
+              $codeChats = $this->paginate(
+                        $this->CodeChats->find('all',
+                        )->where(['user_id' => $this->request->getAttribute('identity')->id])
+                    );
+        }
 
         $this->set(compact('codeChats'));
     }
